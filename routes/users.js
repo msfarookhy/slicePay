@@ -24,7 +24,7 @@ router.post('/signup', (req, res) => {
       passport.authenticate("local")(req, res, function () {
 
         req.flash("u have successfully signed up" + req.username);
-        res.redirect('/challenges');
+        res.redirect('/home');
       })
     };
   })
