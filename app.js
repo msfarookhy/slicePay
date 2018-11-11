@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var methodOverride = require('method-override');
 var passport = require("passport")
@@ -70,8 +71,8 @@ app.use(function (req, res, next) {
 //routes
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/product', productRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/product', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
