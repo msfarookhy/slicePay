@@ -2,47 +2,43 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models');
 
-router.get('/product', (req, res) => {
-    res.render('index');
-});
-
-
-/* GET home page. */
-router.get('/', (req, res) => {
+//product
+router.get("/", (req, res) => {
     db.Product.find()
-        .then((product) => res.json(product))
-        .catch((error) => res.send(error));
+        .then(product => res.json(product))
+        .catch(err => res.send(err));
 });
-// adding a new product
-router.post('/', (req, res) => {
-    console.log(req.body);
+
+// product home route
+router.post("/", (req, res) => {
     db.Product.create(req.body)
-
-        .then(res.redirect('/product'))
-        .catch((error) => res.send(error));
+        .then(res.redirect("/product"))
+        .catch(err => res.send(err));
 });
 
-
-router.get('/:id', (req, res) => {
-    const id = req.params.id;
+// product show
+router.get("/:id", (req, res) => {
+    let id = req.params.id;
     db.Product.findById(id)
-        .then((product) => res.json(product))
-        .catch((err) => (err));
+        .then(product => res.json(product))
+        .catch(err => res.send(err));
 });
 
-//update
-router.put('/:id', (req, res) => {
-
+// update product
+router.put("/:id", (req, res) => {
     db.Product.findByIdAndUpdate({ _id: req.params.id }, req.body)
-        .then((product) => res.json(product))
-        .catch((err) => (err));
-})
-
-//delete
-router.delete('/:id', (req, res) => {
-    db.Product.remove({ _id: req.params.id })
-        .then((product) => res.send("removed"))
+        .then(product => res.json(product))
+        .catch(err => res.send(err));
 });
 
+
+// delte product
+router.delete("/:id", (req, res) => {
+    db.Product.remove({ _id: req.params.id })
+        .then(res.send("removed"))
+        .catch(err => res.send(err));
+});
 
 module.exports = router;
+
+
