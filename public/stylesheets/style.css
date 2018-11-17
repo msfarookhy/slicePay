@@ -11,3 +11,18 @@
   padding-left: 20%;
   padding-right: 20%;
 }
+
+.cards { 
+
+  color: black;
+  border: solid 1px black;
+  border-radius: 10px;
+  float: left;
+  margin-left: 50px;
+  margin-top: 60px;
+  
+}
+.card-img-top{
+  border-radius: 10px;
+ 
+}
